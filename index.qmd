@@ -1,46 +1,26 @@
 ---
-title: "Selection Bias & Missing Data Challenge - Part 1"
-subtitle: "Blue Noise Stippling: Creating Art from Data"
+title: "Blue Noise Stippling: Creating Art from Data"
+subtitle: "A Modified Void-and-Cluster Algorithm for Image Stippling"
 format:
   html: default
-  pdf: default
 execute:
-  echo: true
+  echo: false
   eval: true
 ---
 
-# 🎨 Selection Bias & Missing Data Challenge - Part 1
+# Blue Noise Stippling: Creating Art from Data
 
-::: {.callout-important}
-## 📊 Challenge Requirements
+## Introduction
 
-**Your Task:** Reproduce the blue noise stippling process demonstrated below to create:
-1. A stippled version of your chosen image
-2. A progressive stippling GIF animation
-3. Post both to a GitHub Pages site with appropriate captions and a brief explanation
+This project presents an implementation of blue noise stippling, a technique that converts images into aesthetically pleasing patterns of dots (stipples) that preserve the visual information of the original image. The method uses a modified "void and cluster" algorithm that combines importance sampling with blue noise distribution properties to create stippling patterns that are both visually accurate and spatially well-distributed.
 
-**Part 2 Preview:** On November 18th, we'll tackle Part 2 of this challenge, where you'll create a statistical meme about selection bias and missing data using your stippled images.
-:::
+**Objective:** Convert a photograph into an aesthetically pleasing pattern of dots that preserves the visual information of the original image while maintaining optimal spatial distribution.
 
-## The Problem: Can Algorithms Create Art?
-
-**Core Question:** How can we convert a photograph into an aesthetically pleasing pattern of dots that preserves the visual information of the original image?
-
-**The Challenge:** Blue noise stippling is a technique that converts images into patterns of dots (stipples) using algorithms that balance visual accuracy with spatial distribution. This challenge asks you to implement a modified "void and cluster" algorithm that combines importance sampling with blue noise distribution properties to create stippling patterns that are both visually accurate and spatially well-distributed.
-
-**Our Approach:** We'll use a modified void-and-cluster algorithm that:
+**Method:** This implementation uses a modified void-and-cluster algorithm that:
 1. Creates an importance map identifying visually important regions
 2. Uses a toroidal (periodic) Gaussian kernel for repulsion to ensure blue noise properties
 3. Iteratively selects points with minimum energy
 4. Balances image content importance with blue noise spatial distribution
-
-::: {.callout-warning}
-## ⚠️ AI Partnership Required
-
-This challenge pushes boundaries intentionally. You'll tackle problems that normally require weeks of study, but with Cursor AI as your partner (and your brain keeping it honest), you can accomplish more than you thought possible.
-
-**The new reality:** The four stages of competence are Ignorance → Awareness → Learning → Mastery. AI lets us produce Mastery-level work while operating primarily in the Awareness stage. I focus on awareness training, you leverage AI for execution, and together we create outputs that used to require years of dedicated study.
-:::
 
 ## Introduction to Blue Noise Stippling
 
@@ -48,13 +28,26 @@ Blue noise stippling is a technique for converting images into a pattern of dots
 
 The method uses a modified "void and cluster" algorithm that combines importance sampling with blue noise distribution properties to create stippling patterns that are both visually accurate and spatially well-distributed. This version uses **smooth extreme downweighting** that selectively downweights very dark and very light tones while preserving mid-tones, creating a more balanced distribution of stipples across the image.
 
+## How Blue Noise Stippling Works
+
+*[Add your explanation of how blue noise stippling works here. Consider discussing:*
+
+- *The concept of blue noise and its spectral properties*
+- *How the void-and-cluster algorithm operates*
+- *The role of importance mapping in content-aware stippling*
+- *The toroidal Gaussian kernel and its role in spatial distribution*
+- *The iterative point selection process*
+- *How the algorithm balances visual accuracy with spatial uniformity*
+
+*]*
+
 ## Loading the Original Image
 
-First, let's load an image that we'll convert to a blue noise stippling pattern. You can use any image you'd like, but we'll demonstrate with the provided example.
+The following section loads and preprocesses the input image for stippling. The image is converted to grayscale and normalized for processing.
 
 ```{python}
 #| label: load-image
-#| echo: true
+#| echo: false
 #| fig-cap: "Original image before stippling"
 
 import numpy as np
@@ -95,7 +88,7 @@ Before applying the stippling algorithm, we create an **importance map** that id
 
 ```{python}
 #| label: importance-map
-#| echo: true
+#| echo: false
 #| message: false
 #| warning: false
 
@@ -187,7 +180,7 @@ The stippling algorithm uses a modified void-and-cluster approach that:
 
 ```{python}
 #| label: stippling-functions
-#| echo: true
+#| echo: false
 #| message: false
 #| warning: false
 
@@ -290,13 +283,13 @@ def void_and_cluster(
     return final_stipple, np.array(samples)
 ```
 
-## Preparing the Working Image
+## Image Preprocessing
 
-Before generating the stippling pattern, we prepare the image by resizing if necessary and computing the importance map.
+Before generating the stippling pattern, the image is resized if necessary to optimize processing speed, and the importance map is computed.
 
 ```{python}
 #| label: prep-image
-#| echo: true
+#| echo: false
 #| message: false
 #| warning: false
 
@@ -336,11 +329,11 @@ print("Importance map computed")
 
 ## Generating the Stippled Image
 
-Now let's apply the stippling algorithm to create the blue noise stippling pattern.
+The stippling algorithm is applied to create the blue noise stippling pattern using the preprocessed image and importance map.
 
 ```{python}
 #| label: generate-stipple
-#| echo: true
+#| echo: false
 #| message: false
 #| warning: false
 
@@ -359,13 +352,13 @@ print(f"Generated {len(samples)} stipple points")
 print(f"Stipple pattern shape: {stipple_pattern.shape}")
 ```
 
-## Displaying the Results
+## Results
 
-Let's visualize the original image, the importance map, and the stippled version side by side for comparison.
+The following visualization compares the original image, the importance map, and the final stippled version.
 
 ```{python}
 #| label: display-results
-#| echo: true
+#| echo: false
 #| fig-cap: "Comparison of original image, importance map, and blue noise stippling"
 #| fig-width: 7
 #| fig-height: 4
@@ -393,11 +386,11 @@ plt.show()
 
 ## Progressive Stippling Animation
 
-This section creates a GIF showing how the stippled image looks as more points are added sequentially. We'll use the already-computed stippling points to generate frames at increments of 100 points.
+A progressive animation demonstrates how the stippled image develops as points are added sequentially. Frames are generated at increments of 100 points to show the evolution of the pattern.
 
 ```{python}
 #| label: progressive-stippling
-#| echo: true
+#| echo: false
 #| message: false
 #| warning: false
 
@@ -440,12 +433,11 @@ print(f"Generated {len(frames)} frames")
 print(f"Point counts: {point_counts}")
 ```
 
-Now let's create the GIF animation:
+The GIF animation is created from the progressive frames:
 
 ```{python}
 #| label: create-gif
-#| include: false
-#| fig-cap: "Progressive stippling animation showing build-up of points"
+#| echo: false
 #| message: false
 #| warning: false
 
@@ -472,128 +464,50 @@ print(f"Total frames: {len(frames)}")
 print(f"Point counts: {point_counts}")
 ```
 
-![Progressive stippling animation showing the sequential build-up of points. Each frame represents an increment of 100 points, demonstrating how the blue noise stippling pattern develops as more points are added.](progressive_stippling.gif)
+The following animation shows the progressive build-up of the stippling pattern for the processed image:
 
-## Challenge Requirements 📋
+![Progressive stippling animation of the processed image showing the sequential build-up of points. Each frame represents an increment of 100 points, demonstrating how the blue noise stippling pattern develops as more points are added to create the final stippled representation.](progressive_stippling.gif)
 
-### Your Task
+## Discussion
 
-**Part 1 (This Challenge):** Reproduce the blue noise stippling process to create:
+### Why Blue Noise Stippling Creates Aesthetically Pleasing Patterns
 
-1. **A stippled version of your chosen image** - Use the algorithm demonstrated above to create a stippled version of an image of your choice
-2. **A progressive stippling GIF animation** - Create an animated GIF showing how the stippling pattern builds up as points are added
-3. **GitHub Pages site** - Post both the stippled image and GIF to a GitHub Pages site with:
-   - Appropriate captions explaining what the images show
-   - A brief explanation of blue noise stippling and why it creates aesthetically pleasing patterns
+*[Add your explanation of why the algorithm creates aesthetically pleasing patterns here. Consider discussing:*
 
-**Part 2 (November 18th):** We'll use your stippled images to create a statistical meme about selection bias and missing data. More details will be provided in Part 2.
+- *The psychological and visual perception aspects of blue noise*
+- *How blue noise avoids both clustering (which looks unnatural) and regular patterns (which look mechanical)*
+- *The relationship between spatial frequency and visual appeal*
+- *Why evenly distributed points with slight randomness are more pleasing than either purely random or purely regular patterns*
+- *How the importance map preserves visual information while maintaining aesthetic quality*
+- *The balance between content preservation and spatial uniformity*
+- *Comparisons to other stippling or halftoning techniques*
 
-### Minimum Requirements for Any Points
+*]*
 
-1. **Fork and Clone Repository:** Use the starter repository (if provided) or create your own GitHub repository for this challenge
+### Algorithm Performance
 
-2. **Reproduce the Stippling Process:** 
-   - Implement the blue noise stippling algorithm (Python)
-   - Create a stippled version of your chosen image
-   - Generate a progressive stippling GIF animation
+The modified void-and-cluster algorithm successfully converts the input image into a blue noise stippling pattern that preserves the essential visual information while creating an aesthetically pleasing distribution of dots. The algorithm's key strengths include:
 
-3. **GitHub Pages Setup:**
-   - Create a GitHub Pages site showcasing your work
-   - Include the stippled image with appropriate caption
-   - Include the progressive GIF with appropriate caption
-   - Add a brief explanation of blue noise stippling
+1. **Spatial Distribution:** The toroidal Gaussian kernel ensures blue noise properties, resulting in an even distribution of points without clustering or visible patterns.
 
-4. **Code Organization:**
-   - Well-organized, readable code
-   - Comments explaining key steps
-   - Use Python only
+2. **Content Preservation:** The importance map allows the algorithm to place more stipples in darker, more visually important regions while maintaining the overall image structure.
 
-### Grading Rubric 🎓
+3. **Adaptive Processing:** The smooth extreme downweighting and mid-tone boost create a balanced distribution that avoids over-saturation in extreme dark or light areas.
 
-**75% Grade Requirements:**
-- Successfully reproduce the stippling algorithm
-- Create a stippled image and progressive GIF
-- Basic GitHub Pages site with images and captions
+### Technical Implementation
 
-**85% Grade Requirements:**
-- All of the above, plus:
-- Clear explanation of how blue noise stippling works
-- Discussion of why the algorithm creates aesthetically pleasing patterns
-- Professional presentation of results
+The implementation uses Python with NumPy for efficient array operations and PIL/Pillow for image processing. The algorithm processes images by:
 
-**95% Grade Requirements:**
-- All of the above, plus:
-- Experimentation with different parameters (percentage, sigma, etc.)
-- Discussion of how parameter choices affect the final result
-- Comparison of different parameter settings
+- Converting input images to grayscale and normalizing to [0, 1] range
+- Computing importance maps that weight regions based on brightness and tone distribution
+- Using toroidal distance calculations to ensure periodic boundary conditions
+- Iteratively selecting points with minimum energy while adding repulsion fields
 
-**100% Grade Requirements:**
-- All of the above, plus:
-- Exceptional presentation and documentation
-- Creative use of the stippling technique
-- Insightful analysis of the algorithm's behavior
-- Professional-quality GitHub Pages site
+### Results
 
-## Getting Started Tips 🚀
+The final stippled image demonstrates successful preservation of the original image's visual structure while creating an artistic, dot-based representation. The progressive animation effectively illustrates how the pattern develops as points are added, showing the algorithm's iterative refinement process.
 
-::: {.callout-note}
-## 🎯 Navy SEALs Motto
+## Conclusion
 
-> "Slow is Smooth and Smooth is Fast"
-
-*Take your time to understand the stippling algorithm, plan your approach carefully, and execute with precision. Rushing through this challenge will only lead to errors and confusion.*
-:::
-
-::: {.callout-warning}
-## 💾 Important: Save Your Work Frequently!
-
-**Before you start:** Make sure to commit your work often using the Source Control panel in Cursor (Ctrl+Shift+G or Cmd+Shift+G). This prevents the AI from overwriting your progress and ensures you don't lose your work.
-
-**Commit after each major step:**
-- After implementing the importance map function
-- After implementing the stippling algorithm
-- After creating your stippled image
-- After creating your GIF animation
-- After setting up GitHub Pages
-
-*Remember: Frequent commits are your safety net!*
-:::
-
-## Submission Checklist ✅
-
-**Minimum Requirements (Required for Any Points):**
-
-- [ ] Forked/cloned repository for this challenge
-- [ ] Implemented blue noise stippling algorithm
-- [ ] Created stippled version of your image
-- [ ] Generated progressive stippling GIF animation
-- [ ] Created GitHub Pages site
-- [ ] Posted stippled image with caption
-- [ ] Posted progressive GIF with caption
-- [ ] Added brief explanation of blue noise stippling
-
-**75% Grade Requirements:**
-
-- [ ] All minimum requirements met
-- [ ] Code is well-organized and readable
-- [ ] GitHub Pages site is functional
-
-**85% Grade Requirements:**
-
-- [ ] All 75% requirements met
-- [ ] Clear explanation of how blue noise stippling works
-- [ ] Discussion of why the algorithm creates aesthetically pleasing patterns
-
-**95% Grade Requirements:**
-
-- [ ] All 85% requirements met
-- [ ] Experimentation with different parameters
-- [ ] Discussion of parameter effects
-
-**100% Grade Requirements:**
-
-- [ ] All 95% requirements met
-- [ ] Exceptional presentation and documentation
-- [ ] Creative use of the stippling technique
-- [ ] Professional-quality GitHub Pages site
+This implementation successfully demonstrates blue noise stippling using a modified void-and-cluster algorithm. The results show that the technique effectively balances visual accuracy with spatial distribution, creating aesthetically pleasing stippled images that preserve the essential information of the original photograph.
 
