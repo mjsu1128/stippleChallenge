@@ -80,16 +80,7 @@ ul.task-list li input[type="checkbox"] {
 </section>
 <section id="how-blue-noise-stippling-works" class="level2">
 <h2 class="anchored" data-anchor-id="how-blue-noise-stippling-works">How Blue Noise Stippling Works</h2>
-<p><em>[Add your explanation of how blue noise stippling works here. Consider discussing:</em></p>
-<ul>
-<li><em>The concept of blue noise and its spectral properties</em></li>
-<li><em>How the void-and-cluster algorithm operates</em></li>
-<li><em>The role of importance mapping in content-aware stippling</em></li>
-<li><em>The toroidal Gaussian kernel and its role in spatial distribution</em></li>
-<li><em>The iterative point selection process</em></li>
-<li><em>How the algorithm balances visual accuracy with spatial uniformity</em></li>
-</ul>
-<p><em>]</em></p>
+<p>Blue noise stippling is a method of drawing an image using small dots that are spread out evenly but still show light and dark areas correctly. The darker parts of the picture have more dots placed closer together, while the lighter parts have fewer dots that are farther apart. What makes it “blue noise” is that the dots don’t form visible patterns or clumps. Instead, they are randomly placed but still look balanced. To make this happen, a computer usually starts by placing dots at random and then moves them around until the spacing looks smooth and even. The result is a picture that appears natural when viewed from a distance. The shading is created from the difference in how the dots are arranged.</p>
 </section>
 <section id="loading-the-original-image" class="level2">
 <h2 class="anchored" data-anchor-id="loading-the-original-image">Loading the Original Image</h2>
@@ -134,24 +125,10 @@ Image size: 752x501 pixels</code></pre>
 <section id="image-preprocessing" class="level2">
 <h2 class="anchored" data-anchor-id="image-preprocessing">Image Preprocessing</h2>
 <p>Before generating the stippling pattern, the image is resized if necessary to optimize processing speed, and the importance map is computed.</p>
-<div id="prep-image" class="cell" data-message="false" data-execution_count="4">
-<div class="cell-output cell-output-stdout">
-<pre><code>Resized image from (752, 501) to (512, 341) for processing
-Final image shape: (512, 341) (should be 2D for grayscale)
-Importance map computed</code></pre>
-</div>
-</div>
 </section>
 <section id="generating-the-stippled-image" class="level2">
 <h2 class="anchored" data-anchor-id="generating-the-stippled-image">Generating the Stippled Image</h2>
 <p>The stippling algorithm is applied to create the blue noise stippling pattern using the preprocessed image and importance map.</p>
-<div id="generate-stipple" class="cell" data-message="false" data-execution_count="5">
-<div class="cell-output cell-output-stdout">
-<pre><code>Generating blue noise stippling pattern...
-Generated 13967 stipple points
-Stipple pattern shape: (512, 341)</code></pre>
-</div>
-</div>
 </section>
 <section id="results" class="level2">
 <h2 class="anchored" data-anchor-id="results">Results</h2>
@@ -170,30 +147,6 @@ Stipple pattern shape: (512, 341)</code></pre>
 <section id="progressive-stippling-animation" class="level2">
 <h2 class="anchored" data-anchor-id="progressive-stippling-animation">Progressive Stippling Animation</h2>
 <p>A progressive animation demonstrates how the stippled image develops as points are added sequentially. Frames are generated at increments of 100 points to show the evolution of the pattern.</p>
-<div id="progressive-stippling" class="cell" data-message="false" data-execution_count="7">
-<div class="cell-output cell-output-stdout">
-<pre><code>Using existing stippling with 13967 points
-Image shape: (512, 341)
-Generated 141 frames
-Point counts: [1, 100, 200, 300, 400, 500, 600, 700, 800, 900, 1000, 1100, 1200, 1300, 1400, 1500, 1600, 1700, 1800, 1900, 2000, 2100, 2200, 2300, 2400, 2500, 2600, 2700, 2800, 2900, 3000, 3100, 3200, 3300, 3400, 3500, 3600, 3700, 3800, 3900, 4000, 4100, 4200, 4300, 4400, 4500, 4600, 4700, 4800, 4900, 5000, 5100, 5200, 5300, 5400, 5500, 5600, 5700, 5800, 5900, 6000, 6100, 6200, 6300, 6400, 6500, 6600, 6700, 6800, 6900, 7000, 7100, 7200, 7300, 7400, 7500, 7600, 7700, 7800, 7900, 8000, 8100, 8200, 8300, 8400, 8500, 8600, 8700, 8800, 8900, 9000, 9100, 9200, 9300, 9400, 9500, 9600, 9700, 9800, 9900, 10000, 10100, 10200, 10300, 10400, 10500, 10600, 10700, 10800, 10900, 11000, 11100, 11200, 11300, 11400, 11500, 11600, 11700, 11800, 11900, 12000, 12100, 12200, 12300, 12400, 12500, 12600, 12700, 12800, 12900, 13000, 13100, 13200, 13300, 13400, 13500, 13600, 13700, 13800, 13900, 13967]</code></pre>
-</div>
-</div>
-<p>The GIF animation is created from the progressive frames:</p>
-<div id="cell-create-gif" class="cell" data-message="false" data-execution_count="8">
-<div class="cell-output cell-output-stdout">
-<pre><code>Creating GIF animation...
-GIF saved to: progressive_stippling.gif
-Total frames: 141
-Point counts: [1, 100, 200, 300, 400, 500, 600, 700, 800, 900, 1000, 1100, 1200, 1300, 1400, 1500, 1600, 1700, 1800, 1900, 2000, 2100, 2200, 2300, 2400, 2500, 2600, 2700, 2800, 2900, 3000, 3100, 3200, 3300, 3400, 3500, 3600, 3700, 3800, 3900, 4000, 4100, 4200, 4300, 4400, 4500, 4600, 4700, 4800, 4900, 5000, 5100, 5200, 5300, 5400, 5500, 5600, 5700, 5800, 5900, 6000, 6100, 6200, 6300, 6400, 6500, 6600, 6700, 6800, 6900, 7000, 7100, 7200, 7300, 7400, 7500, 7600, 7700, 7800, 7900, 8000, 8100, 8200, 8300, 8400, 8500, 8600, 8700, 8800, 8900, 9000, 9100, 9200, 9300, 9400, 9500, 9600, 9700, 9800, 9900, 10000, 10100, 10200, 10300, 10400, 10500, 10600, 10700, 10800, 10900, 11000, 11100, 11200, 11300, 11400, 11500, 11600, 11700, 11800, 11900, 12000, 12100, 12200, 12300, 12400, 12500, 12600, 12700, 12800, 12900, 13000, 13100, 13200, 13300, 13400, 13500, 13600, 13700, 13800, 13900, 13967]</code></pre>
-</div>
-<div class="cell-output cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="index_files/figure-html/create-gif-output-2.png" id="create-gif" width="397" height="417" class="figure-img"></p>
-</figure>
-</div>
-</div>
-</div>
 <p>The following animation shows the progressive build-up of the stippling pattern for the processed image:</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">

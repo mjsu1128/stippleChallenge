@@ -30,16 +30,8 @@ The method uses a modified "void and cluster" algorithm that combines importance
 
 ## How Blue Noise Stippling Works
 
-*[Add your explanation of how blue noise stippling works here. Consider discussing:*
+Blue noise stippling is a method of drawing an image using small dots that are spread out evenly but still show light and dark areas correctly. The darker parts of the picture have more dots placed closer together, while the lighter parts have fewer dots that are farther apart. What makes it “blue noise” is that the dots don’t form visible patterns or clumps. Instead, they are randomly placed but still look balanced. To make this happen, a computer usually starts by placing dots at random and then moves them around until the spacing looks smooth and even. The result is a picture that appears natural when viewed from a distance. The shading is created from the difference in how the dots are arranged.
 
-- *The concept of blue noise and its spectral properties*
-- *How the void-and-cluster algorithm operates*
-- *The role of importance mapping in content-aware stippling*
-- *The toroidal Gaussian kernel and its role in spatial distribution*
-- *The iterative point selection process*
-- *How the algorithm balances visual accuracy with spatial uniformity*
-
-*]*
 
 ## Loading the Original Image
 
@@ -290,6 +282,7 @@ Before generating the stippling pattern, the image is resized if necessary to op
 ```{python}
 #| label: prep-image
 #| echo: false
+#| output: false
 #| message: false
 #| warning: false
 
@@ -334,6 +327,7 @@ The stippling algorithm is applied to create the blue noise stippling pattern us
 ```{python}
 #| label: generate-stipple
 #| echo: false
+#| output: false
 #| message: false
 #| warning: false
 
@@ -391,6 +385,7 @@ A progressive animation demonstrates how the stippled image develops as points a
 ```{python}
 #| label: progressive-stippling
 #| echo: false
+#| output: false
 #| message: false
 #| warning: false
 
@@ -433,11 +428,10 @@ print(f"Generated {len(frames)} frames")
 print(f"Point counts: {point_counts}")
 ```
 
-The GIF animation is created from the progressive frames:
-
 ```{python}
 #| label: create-gif
 #| echo: false
+#| output: false
 #| message: false
 #| warning: false
 
